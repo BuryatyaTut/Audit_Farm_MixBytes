@@ -7,11 +7,11 @@ Here could be a disclaimer, but I don't have one
 
 ### 1.2 Security Assessment Methodology
 
-One student-auditor were involved into the work on the audit. Auditor check the code with the methodology described below:
+One student auditor was involved in the audit work. The auditor checked the code using the following methodology:
 
-* Checking each file independently for a specific for this project vulnerabilities
-* Checking the code in accordance with the vulnerabilities checklist
-* Checking the correctness of code when possibile bad scenarios of cross-contracts function calling is happening
+* Independently checking each file for vulnerabilities specific to this project
+* Reviewing the code in accordance with a vulnerabilities checklist
+* Verifying the correctness of the code in scenarios where potentially bad cross-contract function calls could occur
 
 #### Funding Severity breakdown
 
@@ -75,9 +75,9 @@ Not found
 ##### Description
 
 * At line https://github.com/maincard-io/maincard-contract/blob/d0a0029411f5dc6e58c2029e2707ba5d02dc2ab8/contracts/Tournament.sol#L77C13-L77C76
-* The require statement which blocks winners to get their rewards
-* there is a require statement, which checks that sum of payouts should be more than rewards collected and then substract totalPayouts from rewardsCollected, which would lead to the function revert. Moreover, this would make it impossible to function finish successfully **in any case**, because of if the payouts is less than rewards it would also lead to the revert this time because of require
-* It's HIGH because it will be impossible to execute this function never, which will make impossible for users to winners to get their rewards. The only way to fix this issue is to fix and redeploy contract 
+* The require statement that prevents winners from receiving their rewards
+* There is a require statement which ensures that the sum of payouts is greater than the rewards collected, and then subtracts totalPayouts from rewardsCollected. This leads to the function reverting. Furthermore, this setup guarantees that the function will never finish successfully. If the payouts are less than the rewards, it will also cause a revert due to the require statement
+* This issue is classified as HIGH severity because it renders the function inoperable, preventing winners from receiving their rewards. The only solution is to fix and redeploy the contract
 
 ##### Recommendation
 I recommend to change the require statement to the opposite:  require(totalPayout <= rewards);
@@ -89,7 +89,7 @@ I recommend to change the require statement to the opposite:  require(totalPayou
 * At lines https://github.com/maincard-io/maincard-contract/blob/d0a0029411f5dc6e58c2029e2707ba5d02dc2ab8/contracts/Tournament.sol#L127C13-L131C61
 * Require statement at loop will make it impossible for user to register more than one card for tournament
 * In cases if there is requireCards > 1 user needs to register >1 cards. If he passes the list of 2+ cards, the first iteration of a for loop will pass the require statement and set the boolean flag of _registeredPlayers_ to _True_. On the next iteration the require will fail. Which means it is only possible to register with only one card
-* It's HIGH because for the tournaments with require cards amount > 1 it would be impossible for users to register for it. And the only way to fix it is contract manual fix and redeploy
+* This is a HIGH severity issue because, for tournaments requiring more than one card, it becomes impossible for users to register. The only resolution is a manual fix and redeployment of the contract
 
 ##### Recommendation
 
