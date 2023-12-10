@@ -61,7 +61,7 @@ All vulnerabilities discovered during the audit are classified based on their po
 | CRITICAL | 0             |
 | HIGH     | 3             |
 | MEDIUM   | 3             |
-| LOW      | 0             |
+| LOW      | 2             |
 
 ## FINDINGS
 
