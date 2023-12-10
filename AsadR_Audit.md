@@ -12,7 +12,6 @@ One student-auditor were involved into the work on the audit. Auditor check the 
 * Checking each file independently for a specific for this project vulnerabilities
 * Checking the code in accordance with the vulnerabilities checklist
 * Checking the correctness of code when possibile bad scenarios of cross-contracts function calling is happening
-* Bug-fixing and reaudit
 
 #### Funding Severity breakdown
 
